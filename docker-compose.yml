@@ -1,0 +1,14 @@
+version: "3"
+services:
+  graphql-engine:
+    image: hasura/graphql-engine:v1.0.0
+    ports:
+      - "8081:8080"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:pass@localhost:5432/tpv
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: 123a4567
+#      HASURA_GRAPHQL_JWT_SECRET: '{"type": "HS256", "key": "3bd561c37d214b4496d09049fadc542c"}'

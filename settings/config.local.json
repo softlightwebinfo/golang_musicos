@@ -1,0 +1,9 @@
+{
+  "database": {
+    "host": "127.0.0.1",
+    "user": "golang",
+    "password": "password",
+    "port": "54320",
+    "database": "musicos"
+  }
+}

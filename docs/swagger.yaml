@@ -1,0 +1,2952 @@
+basePath: /
+definitions:
+  libs.ACLResponse:
+    properties:
+      package:
+        $ref: '#/definitions/libs.UserPackage'
+        type: object
+      package_permission:
+        items:
+          $ref: '#/definitions/libs.PackagePermission'
+        type: array
+    type: object
+  libs.ErrorResponse:
+    properties:
+      error:
+        type: object
+      message:
+        type: string
+    type: object
+  libs.HelloWorldResponse:
+    properties:
+      message:
+        type: string
+      name:
+        type: string
+    type: object
+  libs.PackagePermission:
+    properties:
+      active:
+        type: boolean
+      fk_id_package:
+        type: integer
+      fk_id_permission:
+        type: integer
+      price:
+        type: number
+      value:
+        type: number
+    type: object
+  libs.UserPackage:
+    properties:
+      discount:
+        type: number
+      fk_amount_type:
+        type: integer
+      fk_id_package:
+        type: integer
+      fk_id_package_offer:
+        type: integer
+      name:
+        type: string
+      package_price:
+        type: number
+      price_total:
+        type: number
+    type: object
+  models.AclPackageActivate:
+    properties:
+      custom:
+        type: string
+      invoice:
+        type: string
+      ipn_track_id:
+        type: string
+      item_name:
+        type: string
+      mc_amount_1:
+        type: string
+      mc_amount_3:
+        type: string
+      payer_email:
+        type: string
+      payer_status:
+        type: string
+      period_1:
+        type: string
+      period_3:
+        type: string
+      recur_times:
+        type: string
+      recurring:
+        type: string
+      subscr_date:
+        type: string
+      subscr_id:
+        type: string
+      txn_type:
+        type: string
+    type: object
+  models.AclPackageInvoice:
+    properties:
+      id:
+        type: integer
+      value:
+        type: number
+    type: object
+  models.AclPackageInvoiceSuccess:
+    properties:
+      invoice:
+        type: string
+    type: object
+  models.AutCredentials:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  models.AuthUser:
+    properties:
+      token:
+        type: string
+      user:
+        $ref: '#/definitions/models.User'
+        type: object
+    type: object
+  models.Blog:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      fk_id_category:
+        type: integer
+      fk_user_id:
+        type: integer
+      id:
+        type: integer
+      image:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.BlogCategory:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      parent_id:
+        type: string
+    type: object
+  models.BlogCategoryCreated:
+    properties:
+      name:
+        type: string
+      parent_id:
+        type: string
+    type: object
+  models.BlogComment:
+    properties:
+      comment:
+        type: string
+      created_at:
+        type: string
+      fk_id_blog:
+        type: integer
+      fk_user_id:
+        type: integer
+      id:
+        type: integer
+      updated_at:
+        type: string
+      user_email:
+        type: string
+      user_name:
+        type: string
+    type: object
+  models.BlogCommentCreated:
+    properties:
+      comment:
+        type: string
+      fk_id_blog:
+        type: integer
+      fk_user_id:
+        type: integer
+      user_email:
+        type: string
+      user_name:
+        type: string
+    type: object
+  models.BlogCreated:
+    properties:
+      description:
+        type: string
+      fk_id_category:
+        type: integer
+      fk_user_id:
+        type: integer
+      title:
+        type: string
+    type: object
+  models.BlogExtend:
+    properties:
+      blog:
+        $ref: '#/definitions/models.Blog'
+        type: object
+      category:
+        $ref: '#/definitions/models.BlogCategory'
+        type: object
+      comments:
+        items:
+          $ref: '#/definitions/models.BlogComment'
+        type: array
+      tags:
+        items:
+          $ref: '#/definitions/models.BlogTag'
+        type: array
+      user:
+        $ref: '#/definitions/models.UserDetail'
+        type: object
+    type: object
+  models.BlogTag:
+    properties:
+      fk_id_blog:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.Category:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.CategoryCreated:
+    properties:
+      name:
+        type: string
+    type: object
+  models.CategoryExtend:
+    properties:
+      category:
+        type: string
+      count:
+        type: integer
+      id_category:
+        type: integer
+      id_subcategory:
+        type: integer
+      slug:
+        type: string
+      subcategory:
+        type: string
+    type: object
+  models.CategoryExtendCount:
+    properties:
+      count:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.CategoryExtendGroup:
+    properties:
+      categories:
+        items:
+          $ref: '#/definitions/models.CategoryExtend'
+        type: array
+      category:
+        $ref: '#/definitions/models.CategoryExtendCount'
+        type: object
+    type: object
+  models.CategorySubcategory:
+    properties:
+      fk_id_category:
+        type: integer
+      fk_id_subcategory:
+        type: integer
+      slug:
+        type: string
+    type: object
+  models.City:
+    properties:
+      country:
+        type: string
+      id:
+        type: integer
+      latitude:
+        type: string
+      longitude:
+        type: string
+      name:
+        type: string
+      region:
+        type: string
+      slug:
+        type: string
+    type: object
+  models.Contact:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      message:
+        type: string
+      name:
+        type: string
+      subject:
+        type: string
+    type: object
+  models.ContactCreated:
+    properties:
+      email:
+        type: string
+      message:
+        type: string
+      name:
+        type: string
+      subject:
+        type: string
+    type: object
+  models.Country:
+    properties:
+      code:
+        type: string
+      latitude:
+        type: string
+      longitude:
+        type: string
+      name:
+        type: string
+      slug:
+        type: string
+    type: object
+  models.Events:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      event_end:
+        type: string
+      event_start:
+        type: string
+      fk_id_city:
+        type: integer
+      fk_id_user:
+        type: integer
+      id:
+        type: integer
+      image:
+        type: string
+      is_public:
+        type: boolean
+      slug:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.EventsList:
+    properties:
+      events:
+        $ref: '#/definitions/models.Events'
+        type: object
+      location:
+        $ref: '#/definitions/models.EventsLocation'
+        type: object
+    type: object
+  models.EventsLocation:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      region:
+        type: string
+    type: object
+  models.InitSearchWeb:
+    properties:
+      count:
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/models.SearchWeb'
+        type: array
+    type: object
+  models.Item:
+    properties:
+      contact_name:
+        type: string
+      contact_phone:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      fk_city:
+        type: integer
+      fk_id_category:
+        type: integer
+      fk_id_subcategory:
+        type: integer
+      fk_user_id:
+        type: integer
+      id:
+        type: integer
+      image:
+        type: string
+      price:
+        type: number
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.ItemContact:
+    properties:
+      created_at:
+        type: string
+      fk_id_item:
+        type: integer
+      id:
+        type: integer
+      user_email:
+        type: string
+      user_message:
+        type: string
+      user_name:
+        type: string
+      user_phone:
+        type: string
+    type: object
+  models.ItemContactCreated:
+    properties:
+      fk_id_item:
+        type: integer
+      user_email:
+        type: string
+      user_message:
+        type: string
+      user_name:
+        type: string
+      user_phone:
+        type: string
+    type: object
+  models.ItemCreated:
+    properties:
+      contact_name:
+        type: string
+      contact_phone:
+        type: string
+      description:
+        type: string
+      fk_city:
+        type: integer
+      fk_id_category:
+        type: integer
+      fk_id_subcategory:
+        type: integer
+      fk_user_id:
+        type: integer
+      price:
+        type: number
+      title:
+        type: string
+    type: object
+  models.ItemDetail:
+    properties:
+      city_name:
+        type: string
+      contact_name:
+        type: string
+      contact_phone:
+        type: string
+      country_name:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      image:
+        type: string
+      item_city:
+        type: string
+      item_country:
+        type: string
+      item_region:
+        type: string
+      price:
+        type: number
+      region_name:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.ItemExtend:
+    properties:
+      category:
+        $ref: '#/definitions/models.CategoryExtend'
+        type: object
+      item:
+        $ref: '#/definitions/models.ItemDetail'
+        type: object
+      user:
+        $ref: '#/definitions/models.UserDetail'
+        type: object
+    type: object
+  models.ItemExtendArray:
+    properties:
+      count:
+        type: integer
+      items:
+        items:
+          $ref: '#/definitions/models.ItemExtend'
+        type: array
+    type: object
+  models.ItemExtendCreated:
+    properties:
+      item:
+        $ref: '#/definitions/models.ItemCreated'
+        type: object
+      user:
+        $ref: '#/definitions/models.UserCreated'
+        type: object
+    type: object
+  models.Package:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      package_amount:
+        type: integer
+      package_discount:
+        type: number
+      package_price:
+        type: number
+      updated_at:
+        type: string
+      value:
+        type: number
+    type: object
+  models.PackageGroup:
+    properties:
+      package:
+        $ref: '#/definitions/models.Package'
+        type: object
+      package_permission:
+        items:
+          $ref: '#/definitions/models.PackagePermissions'
+        type: array
+    type: object
+  models.PackagePermissions:
+    properties:
+      active:
+        type: boolean
+      fk_id_package:
+        type: integer
+      fk_id_permission:
+        type: integer
+      key:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      value:
+        type: number
+    type: object
+  models.Region:
+    properties:
+      code:
+        type: string
+      country:
+        type: string
+      id:
+        type: integer
+      latitude:
+        type: string
+      longitude:
+        type: string
+      name:
+        type: string
+      slug:
+        type: string
+    type: object
+  models.Role:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      parent_id:
+        type: integer
+    type: object
+  models.RoleCreated:
+    properties:
+      name:
+        type: string
+      parent_id:
+        type: integer
+    type: object
+  models.SearchWeb:
+    properties:
+      data:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      primary:
+        type: string
+      slug:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.SubCategoryCreated:
+    properties:
+      name:
+        type: string
+    type: object
+  models.Subcategory:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.User:
+    properties:
+      active:
+        type: boolean
+      age:
+        example: "2006-01-02T00:00:00Z"
+        type: string
+      avatar:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      fk_role_id:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      slug:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.UserConfirmEmailToken:
+    properties:
+      err:
+        type: string
+      success:
+        type: boolean
+      token:
+        type: string
+    type: object
+  models.UserCreated:
+    properties:
+      active:
+        type: boolean
+      age:
+        example: "2006-01-02T00:00:00Z"
+        type: string
+      avatar:
+        type: string
+      email:
+        type: string
+      fk_role_id:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      slug:
+        type: string
+    type: object
+  models.UserDetail:
+    properties:
+      active:
+        type: boolean
+      age:
+        example: "2006-01-02T00:00:00Z"
+        type: string
+      avatar:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      fk_role_id:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      phone:
+        type: string
+      slug:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.UserRecovery:
+    properties:
+      email:
+        type: string
+    type: object
+  models.UserRecoveryEmail:
+    properties:
+      password:
+        type: string
+      token:
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server Petstore server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /api/v1/:
+    get:
+      description: Description of the api
+      operationId: HomeController
+      responses:
+        "200":
+          description: Show messages and provided name
+          schema:
+            $ref: '#/definitions/libs.HelloWorldResponse'
+            type: object
+      summary: Home Api Router
+      tags:
+      - Home
+  /api/v1/acl/:
+    get:
+      description: Description of the api
+      operationId: AclController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/libs.ACLResponse'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Acl
+  /api/v1/acl/packages:
+    get:
+      description: Description of the api
+      operationId: AclPackagesController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/models.Package'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Acl
+  /api/v1/acl/packages-activate/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AclPackagesActivateController
+      parameters:
+      - description: Add Role
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.AclPackageActivate'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/AclResponse'
+            type: array
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Acl
+  /api/v1/acl/packages-group/:
+    get:
+      description: Description of the api
+      operationId: AclPackagesGroupController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/models.PackageGroup'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Acl
+  /api/v1/acl/packages-invoice/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AclPackagesInvoiceController
+      parameters:
+      - description: Add Role
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.AclPackageInvoice'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.AclPackageInvoiceSuccess'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Acl
+  /api/v1/auth/:
+    get:
+      description: Description of the api
+      operationId: AuthController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Auth
+  /api/v1/auth/decode/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthDecodeController
+      parameters:
+      - description: Add Role
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.RoleCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/encode/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthEncodeController
+      parameters:
+      - description: Add Role
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.AuthUser'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/generate-token/{id}/:
+    get:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthGenerateTokenController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.AuthUser'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/recovery-email/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthRecoveryEmailController
+      parameters:
+      - description: Add Role
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserRecoveryEmail'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            type: boolean
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/recovery/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthRecoveryController
+      parameters:
+      - description: Add Role
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserRecovery'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            type: boolean
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/signin/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthSigninController
+      parameters:
+      - description: Add Role
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.AutCredentials'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.AuthUser'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/signup/:
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthSignupController
+      parameters:
+      - description: Add Role
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.AuthUser'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/user/:
+    get:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthUserController
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.AuthUser'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/auth/verify/:
+    get:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: AuthVerifyController
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.AuthUser'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Auth
+  /api/v1/blog-comments/:
+    get:
+      description: Description of the api
+      operationId: BlogsCommentsController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.BlogComment'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Blog Comments
+  /api/v1/blog-comments/{id}/:
+    delete:
+      description: Description of the api
+      operationId: CategoryDeleteController
+      parameters:
+      - description: ID BLOG id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.BlogComment'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Blog Comments
+    get:
+      description: Description of the api
+      operationId: CategoryGetController
+      parameters:
+      - description: Blog id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            items:
+              $ref: '#/definitions/models.BlogComment'
+            type: array
+      summary: Categories Api Router s
+      tags:
+      - Blog Comments
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: BlogsCommentsCreateController
+      parameters:
+      - description: Blog id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Add Category
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.BlogCommentCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.BlogComment'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Category Create Api Router
+      tags:
+      - Blog Comments
+  /api/v1/blogs-categories/:
+    get:
+      description: Description of the api
+      operationId: BlogsCategoriesController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.BlogCategory'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Blog Categories
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: BlogsCategoriesCreateController
+      parameters:
+      - description: Add Category
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.BlogCategoryCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.BlogCategory'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Category Create Api Router
+      tags:
+      - Blog Categories
+  /api/v1/blogs-categories/{id}/:
+    delete:
+      description: Description of the api
+      operationId: BlogsCategoryDeleteController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.BlogCategory'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Blog Categories
+    get:
+      description: Description of the api
+      operationId: BlogsCategoryGetController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.BlogCategory'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Blog Categories
+  /api/v1/blogs-extends/:
+    get:
+      description: Description of the api
+      operationId: BlogsExtendController
+      responses:
+        "200":
+          description: Show Blogs
+          schema:
+            items:
+              $ref: '#/definitions/models.BlogExtend'
+            type: array
+      summary: Blogs Api Router
+      tags:
+      - Blogs Extend
+  /api/v1/blogs-extends/{id}/:
+    get:
+      description: Description of the api
+      operationId: BlogsGetExtendController
+      parameters:
+      - description: Blog id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Blogs
+          schema:
+            $ref: '#/definitions/models.BlogExtend'
+            type: object
+      summary: Blogs Api Router
+      tags:
+      - Blogs Extend
+  /api/v1/blogs/:
+    get:
+      description: Description of the api
+      operationId: BlogsController
+      responses:
+        "200":
+          description: Show Blogs
+          schema:
+            items:
+              $ref: '#/definitions/models.Blog'
+            type: array
+      summary: Blogs Api Router
+      tags:
+      - Blogs
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: BlogsCreateController
+      parameters:
+      - description: Add Item
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.BlogCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Blog'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Item Create Api Router
+      tags:
+      - Blogs
+  /api/v1/blogs/{id}/:
+    delete:
+      description: Description of the api
+      operationId: BlogsDeleteController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Blog'
+            type: object
+      summary: Blogs Api Router s
+      tags:
+      - Blogs
+    get:
+      description: Description of the api
+      operationId: BlogsGetController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Blog'
+            type: object
+      summary: Blogs Api Router s
+      tags:
+      - Blogs
+    put:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: BlogsPutController
+      parameters:
+      - description: Blog id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Add Item
+        in: body
+        name: blog
+        required: true
+        schema:
+          $ref: '#/definitions/models.BlogCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Blog'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Item PUT Api Router
+      tags:
+      - Blogs
+  /api/v1/blogs/{id}/file/:
+    post:
+      description: Description of the api
+      operationId: BlogsUploadFileController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/Blog'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Upload
+  /api/v1/categories-extends/:
+    get:
+      description: Description of the api
+      operationId: CategoriesExtendController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.CategoryExtend'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Categories Extend
+  /api/v1/categories-extends/group:
+    get:
+      description: Description of the api
+      operationId: CategoriesExtendController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.CategoryExtendGroup'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Categories Extend
+  /api/v1/categories-extends/slug/{slug}/:
+    get:
+      description: Description of the api
+      operationId: CategoriesExtendSlugController
+      parameters:
+      - description: Category id
+        in: path
+        name: slug
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            $ref: '#/definitions/models.CategoryExtend'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Categories Extend
+  /api/v1/categories-subcategories/:
+    get:
+      description: Description of the api
+      operationId: CategoriesAndSubcategoriesController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.CategorySubcategory'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Categories Subcategories
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: CategoriesCreateController
+      parameters:
+      - description: Add Category
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.CategorySubcategory'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.CategorySubcategory'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Category Create Api Router
+      tags:
+      - Categories Subcategories
+  /api/v1/categories-subcategories/{id}/:
+    delete:
+      description: Description of the api
+      operationId: CategoryDeleteController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            items:
+              $ref: '#/definitions/models.CategorySubcategory'
+            type: array
+      summary: Categories Api Router s
+      tags:
+      - Categories Subcategories
+    get:
+      description: Description of the api
+      operationId: CategoryGetController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            items:
+              $ref: '#/definitions/models.CategorySubcategory'
+            type: array
+      summary: Get Subcategories from the one category
+      tags:
+      - Categories Subcategories
+  /api/v1/categories-subcategories/{id}/subcategories/{subcategory}:
+    delete:
+      description: Description of the api
+      operationId: CategoriesAndSubcategoriesDeleteSubcategoryController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.CategorySubcategory'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Categories Subcategories
+  /api/v1/categories-subcategories/{id}/subcategories/{subcategory}/:
+    get:
+      description: Description of the api
+      operationId: CategoryGetController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Subcategory id
+        in: path
+        name: subcategory
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.CategorySubcategory'
+            type: object
+      summary: Get Subcategory
+      tags:
+      - Categories Subcategories
+  /api/v1/categories/:
+    get:
+      description: Description of the api
+      operationId: CategoriesController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.Category'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Categories
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: CategoriesCreateController
+      parameters:
+      - description: Add Category
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.CategoryCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.Category'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Category Create Api Router
+      tags:
+      - Categories
+  /api/v1/categories/{id}/:
+    delete:
+      description: Description of the api
+      operationId: CategoryDeleteController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.Category'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Categories
+    get:
+      description: Description of the api
+      operationId: CategoryGetController
+      parameters:
+      - description: Category id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.Category'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Categories
+  /api/v1/cities/:
+    get:
+      description: Description of the api
+      operationId: CitiesController
+      responses:
+        "200":
+          description: Show Cities
+          schema:
+            items:
+              $ref: '#/definitions/models.City'
+            type: array
+      summary: Cities Api Router
+      tags:
+      - Cities
+  /api/v1/contacts/:
+    get:
+      description: Description of the api
+      operationId: ContactsController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.Contact'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Contacts
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: ContactsCreateController
+      parameters:
+      - description: Add Category
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContactCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.Contact'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Category Create Api Router
+      tags:
+      - Contacts
+  /api/v1/contacts/{id}/:
+    delete:
+      description: Description of the api
+      operationId: ContactsDeleteController
+      parameters:
+      - description: Contact id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Contact
+          schema:
+            $ref: '#/definitions/models.Contact'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Contacts
+    get:
+      description: Description of the api
+      operationId: ContactsGetController
+      parameters:
+      - description: Contact id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.Contact'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Contacts
+  /api/v1/countries/:
+    get:
+      description: Description of the api
+      operationId: CountriesController
+      responses:
+        "200":
+          description: Show Countries
+          schema:
+            items:
+              $ref: '#/definitions/models.Country'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Countries
+  /api/v1/countries/{code}/:
+    get:
+      description: Description of the api
+      operationId: CountriesGetController
+      parameters:
+      - description: Code id
+        in: path
+        name: code
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Show Countries
+          schema:
+            $ref: '#/definitions/models.Country'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Countries
+  /api/v1/countries/{code}/regions/:
+    get:
+      description: Description of the api
+      operationId: CountriesRegionsController
+      parameters:
+      - description: Code id
+        in: path
+        name: code
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Show Countries
+          schema:
+            items:
+              $ref: '#/definitions/models.Region'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Countries
+  /api/v1/countries/{code}/regions/{region}/:
+    get:
+      description: Description of the api
+      operationId: CountriesRegionController
+      parameters:
+      - description: Country code
+        in: path
+        name: code
+        required: true
+        type: string
+      - description: Region Code
+        in: path
+        name: region
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Show Countries
+          schema:
+            $ref: '#/definitions/models.Region'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Countries
+  /api/v1/countries/{code}/regions/{region}/cities/:
+    get:
+      description: Description of the api
+      operationId: CountriesRegionCitiesController
+      parameters:
+      - description: Country Code
+        in: path
+        name: code
+        required: true
+        type: string
+      - description: Region Code
+        in: path
+        name: region
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Show Countries
+          schema:
+            items:
+              $ref: '#/definitions/models.City'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Countries
+  /api/v1/events-group/group/:
+    get:
+      description: Description of the api
+      operationId: EventsGetGroupController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/models.EventsList'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Events
+  /api/v1/events-group/group/{id}/:
+    get:
+      description: Description of the api
+      operationId: EventsGetGroupIdController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/models.EventsList'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Events
+  /api/v1/events/:
+    get:
+      description: Description of the api
+      operationId: EventsGetController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/models.EventsList'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Events
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: EventsPostController
+      parameters:
+      - description: Add Role
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.AclPackageActivate'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/EventsResponse'
+            type: array
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Events
+  /api/v1/events/{id}/:
+    delete:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: EventsDeleteController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Add Role
+        in: body
+        name: auth
+        required: true
+        schema:
+          $ref: '#/definitions/models.AclPackageActivate'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/EventsResponse'
+            type: array
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Events
+    get:
+      description: Description of the api
+      operationId: EventsGetEventController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.EventsList'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Events
+  /api/v1/item-contacts/:
+    get:
+      description: Description of the api
+      operationId: ItemsContactsController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            items:
+              $ref: '#/definitions/models.ItemContact'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Item Contacts
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: ItemsContactsCreateController
+      parameters:
+      - description: Add Category
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.ItemContactCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.ItemContact'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Category Create Api Router
+      tags:
+      - Item Contacts
+  /api/v1/item-contacts/{idItem}/row/{idRow}/:
+    delete:
+      description: Description of the api
+      operationId: ContactsDeleteController
+      parameters:
+      - description: Item id
+        in: path
+        name: idItem
+        required: true
+        type: integer
+      - description: row id
+        in: path
+        name: idRow
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Contact
+          schema:
+            $ref: '#/definitions/models.ItemContact'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Item Contacts
+    get:
+      description: Description of the api
+      operationId: ItemsContactsGetController
+      parameters:
+      - description: Item id
+        in: path
+        name: idItem
+        required: true
+        type: integer
+      - description: Row id
+        in: path
+        name: idRow
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Category
+          schema:
+            $ref: '#/definitions/models.ItemContact'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Item Contacts
+  /api/v1/items-extends-category/{slug}/:
+    get:
+      description: Description of the api
+      operationId: ItemsExtendsSlugController
+      parameters:
+      - description: category-subcategory-slug id
+        in: path
+        name: slug
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ItemExtendArray'
+            type: object
+      summary: Items Api Router
+      tags:
+      - Items Extend
+  /api/v1/items-extends/:
+    get:
+      description: Description of the api
+      operationId: ItemsExtendsController
+      responses:
+        "200":
+          description: Show Items
+          schema:
+            $ref: '#/definitions/models.ItemExtendArray'
+            type: object
+      summary: Items Api Router
+      tags:
+      - Items Extend
+    post:
+      consumes:
+      - application/json
+      description: Create one item and one user and assigned to item
+      operationId: ItemsExtendsCreateController
+      parameters:
+      - description: Add Item
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.ItemExtendCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.ItemExtend'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Item Create Api Router
+      tags:
+      - Items Extend
+  /api/v1/items-extends/{id}/:
+    get:
+      description: Description of the api
+      operationId: ItemsExtendsGetController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.ItemExtend'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Items Extend
+  /api/v1/items-extends/{id}/action/click:
+    post:
+      description: Description of the api
+      operationId: ItemsExtendsActionClickController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/nil'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Items Extend
+  /api/v1/items-extends/{id}/action/views:
+    post:
+      description: Description of the api
+      operationId: ItemsExtendsActionViewsController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/nil'
+            type: object
+      summary: Categories Api Router s
+      tags:
+      - Items Extend
+  /api/v1/items-extends/{id}/file/:
+    post:
+      description: Description of the api
+      operationId: ItemsExtendsFileController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/libs.ACLResponse'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Upload
+  /api/v1/items/:
+    get:
+      description: Description of the api
+      operationId: ItemsController
+      responses:
+        "200":
+          description: Show Items
+          schema:
+            items:
+              $ref: '#/definitions/models.Item'
+            type: array
+      summary: Items Api Router
+      tags:
+      - Items
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: ItemsCreateController
+      parameters:
+      - description: Add Item
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.ItemCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Item'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Item Create Api Router
+      tags:
+      - Items
+  /api/v1/items/{id}/:
+    delete:
+      description: Description of the api
+      operationId: ItemsDeleteController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Item'
+            type: object
+      summary: Items Api Router s
+      tags:
+      - Items
+    get:
+      description: Description of the api
+      operationId: ItemsGetController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Item'
+            type: object
+      summary: Items Api Router s
+      tags:
+      - Items
+    put:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: ItemsPutController
+      parameters:
+      - description: Item id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Add Item
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.ItemCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Item
+          schema:
+            $ref: '#/definitions/models.Item'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Item PUT Api Router
+      tags:
+      - Items
+  /api/v1/regions/:
+    get:
+      description: Description of the api
+      operationId: RegionsController
+      responses:
+        "200":
+          description: Show Regions
+          schema:
+            items:
+              $ref: '#/definitions/models.Region'
+            type: array
+      summary: Regions Api Router
+      tags:
+      - Regions
+  /api/v1/roles/:
+    get:
+      description: Description of the api
+      operationId: RolesController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            items:
+              $ref: '#/definitions/models.Role'
+            type: array
+      summary: Categories Api Router
+      tags:
+      - Roles
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: RolesCreateController
+      parameters:
+      - description: Add Role
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.RoleCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Role Create Api Router
+      tags:
+      - Roles
+  /api/v1/roles/{id}/:
+    delete:
+      description: Description of the api
+      operationId: RolesDeleteController
+      parameters:
+      - description: Role id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Role
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+      summary: Roles Api Router s
+      tags:
+      - Roles
+    get:
+      description: Description of the api
+      operationId: RolesGetController
+      parameters:
+      - description: Role id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Role
+          schema:
+            $ref: '#/definitions/models.Role'
+            type: object
+      summary: Roles Api Router s
+      tags:
+      - Roles
+  /api/v1/scraping/:
+    get:
+      description: Description of the api
+      operationId: ScrapingController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/libs.ACLResponse'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Scraping
+  /api/v1/search/images/:
+    get:
+      description: Description of the api
+      operationId: SearchImagesController
+      responses:
+        "200":
+          description: Show Web
+          schema:
+            items:
+              $ref: '#/definitions/models.SearchWeb'
+            type: array
+      summary: Blogs Api Router
+      tags:
+      - Search
+  /api/v1/search/web/:
+    get:
+      description: Description of the api
+      operationId: SearchWebController
+      responses:
+        "200":
+          description: Show Web
+          schema:
+            items:
+              $ref: '#/definitions/models.SearchWeb'
+            type: array
+      summary: Blogs Api Router
+      tags:
+      - Search
+  /api/v1/search/web/limit/{offset}/{limit}/:
+    get:
+      description: Description of the api
+      operationId: SearchWebLimitController
+      parameters:
+      - description: Limit
+        in: path
+        name: limit
+        required: true
+        type: integer
+      - description: Offset
+        in: path
+        name: offset
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Web
+          schema:
+            items:
+              $ref: '#/definitions/models.InitSearchWeb'
+            type: array
+      summary: Blogs Api Router
+      tags:
+      - Search
+  /api/v1/subcategories/:
+    get:
+      description: Description of the api
+      operationId: SubCategoriesController
+      responses:
+        "200":
+          description: Show Subcategories
+          schema:
+            items:
+              $ref: '#/definitions/models.Subcategory'
+            type: array
+      summary: SubCategories Api Router
+      tags:
+      - Subcategories
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: SubCategoriesCreateController
+      parameters:
+      - description: Add SubCategory
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.SubCategoryCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show SubCategory
+          schema:
+            $ref: '#/definitions/models.Subcategory'
+            type: object
+        "400":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+        "404":
+          description: Error
+          schema:
+            $ref: '#/definitions/libs.ErrorResponse'
+            type: object
+      summary: Subcategory Create Api Router
+      tags:
+      - Subcategories
+  /api/v1/subcategories/{id}/:
+    delete:
+      description: Description of the api
+      operationId: SubCategoryDeleteController
+      parameters:
+      - description: SubCategory id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show SubCategory
+          schema:
+            $ref: '#/definitions/models.Subcategory'
+            type: object
+      summary: Subcategories Api Router s
+      tags:
+      - Subcategories
+    get:
+      description: Description of the api
+      operationId: SubCategoryGetController
+      parameters:
+      - description: Subcategory id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Subcategory
+          schema:
+            $ref: '#/definitions/models.Subcategory'
+            type: object
+      summary: Subcategories Api Router s
+      tags:
+      - Subcategories
+  /api/v1/upload/avatar:
+    post:
+      description: Description of the api
+      operationId: UploadController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/libs.ACLResponse'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Upload
+  /api/v1/upload/banner:
+    post:
+      description: Description of the api
+      operationId: UploadBannerController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/libs.ACLResponse'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Upload
+  /api/v1/upload/gallery:
+    post:
+      description: Description of the api
+      operationId: UploadGalleryController
+      responses:
+        "200":
+          description: Show Roles
+          schema:
+            $ref: '#/definitions/libs.ACLResponse'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - Upload
+  /api/v1/user-extends/blogs/:
+    get:
+      description: Description of the api
+      operationId: UserExtendsBlogsController
+      responses:
+        "200":
+          description: Show Blogs
+          schema:
+            items:
+              $ref: '#/definitions/models.BlogExtend'
+            type: array
+      summary: Blogs Api Router
+      tags:
+      - User Extends
+  /api/v1/user-extends/confirmation/email/token/{token}/:
+    get:
+      description: Description of the api
+      operationId: UserExtendsConfirmationTokenController
+      parameters:
+      - description: Token
+        in: path
+        name: token
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Show Blogs
+          schema:
+            $ref: '#/definitions/models.UserConfirmEmailToken'
+            type: object
+        "404":
+          description: Show Blogs
+          schema:
+            $ref: '#/definitions/models.UserConfirmEmailToken'
+            type: object
+      summary: Blogs Api Router
+      tags:
+      - User Extends
+  /api/v1/user-extends/items/:
+    get:
+      description: Description of the api
+      operationId: CategoriesController
+      responses:
+        "200":
+          description: Show Categories
+          schema:
+            $ref: '#/definitions/models.ItemExtendArray'
+            type: object
+      summary: Categories Api Router
+      tags:
+      - User Extends
+  /api/v1/users/:
+    get:
+      description: Description of the api
+      operationId: UsersController
+      responses:
+        "200":
+          description: Show Users
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+      summary: Users Api Router
+      tags:
+      - Users
+    post:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: UsersCreateController
+      parameters:
+      - description: Add User account
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserCreated'
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Users
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+        "400":
+          description: error
+          schema:
+            type: string
+      summary: Users Create Api Router
+      tags:
+      - Users
+  /api/v1/users/{id}/:
+    delete:
+      description: Description of the api
+      operationId: UsersDeleteController
+      parameters:
+      - description: User id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show User
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+      summary: Users Api Router s
+      tags:
+      - Users
+    get:
+      description: Description of the api
+      operationId: UsersGetController
+      parameters:
+      - description: User id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Show Users
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+      summary: Users Api Router s
+      tags:
+      - Users
+    put:
+      consumes:
+      - application/json
+      description: Description of the api
+      operationId: UsersUpdateController
+      parameters:
+      - description: Add User account
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserCreated'
+          type: object
+      - description: User id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Show Users
+          schema:
+            $ref: '#/definitions/models.User'
+            type: object
+        "400":
+          description: error
+          schema:
+            type: string
+      summary: Users Update Api Router
+      tags:
+      - Users
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

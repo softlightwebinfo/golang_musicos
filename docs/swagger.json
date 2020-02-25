@@ -1,0 +1,4367 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server Petstore server.",
+        "title": "Swagger Example API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "paths": {
+        "/api/v1/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Home"
+                ],
+                "summary": "Home Api Router",
+                "operationId": "HomeController",
+                "responses": {
+                    "200": {
+                        "description": "Show messages and provided name",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.HelloWorldResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/acl/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Acl"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "AclController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ACLResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/acl/packages": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Acl"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "AclPackagesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Package"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/acl/packages-activate/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Acl"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AclPackagesActivateController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "auth",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AclPackageActivate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AclResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/acl/packages-group/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Acl"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "AclPackagesGroupController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.PackageGroup"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/acl/packages-invoice/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Acl"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AclPackagesInvoiceController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "auth",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AclPackageInvoice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AclPackageInvoiceSuccess"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "AuthController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.User"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/decode/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthDecodeController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.RoleCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/encode/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthEncodeController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AuthUser"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/generate-token/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthGenerateTokenController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AuthUser"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/recovery-email/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthRecoveryEmailController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserRecoveryEmail"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/recovery/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthRecoveryController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserRecovery"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/signin/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthSigninController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AutCredentials"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AuthUser"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/signup/": {
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthSignupController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "auth",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AuthUser"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/user/": {
+            "get": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthUserController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AuthUser"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/verify/": {
+            "get": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "AuthVerifyController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AuthUser"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blog-comments/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blog Comments"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "BlogsCommentsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.BlogComment"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blog-comments/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blog Comments"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "CategoryGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Blog id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.BlogComment"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Blog Comments"
+                ],
+                "summary": "Category Create Api Router",
+                "operationId": "BlogsCommentsCreateController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Blog id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Add Category",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogCommentCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogComment"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blog Comments"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "CategoryDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "ID BLOG id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogComment"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blogs-categories/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blog Categories"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "BlogsCategoriesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.BlogCategory"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Blog Categories"
+                ],
+                "summary": "Category Create Api Router",
+                "operationId": "BlogsCategoriesCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Category",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogCategoryCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogCategory"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blogs-categories/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blog Categories"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "BlogsCategoryGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogCategory"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blog Categories"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "BlogsCategoryDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogCategory"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blogs-extends/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blogs Extend"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "BlogsExtendController",
+                "responses": {
+                    "200": {
+                        "description": "Show Blogs",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.BlogExtend"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blogs-extends/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blogs Extend"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "BlogsGetExtendController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Blog id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Blogs",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogExtend"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blogs/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "BlogsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Blogs",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Blog"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Item Create Api Router",
+                "operationId": "BlogsCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Item",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Blog"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blogs/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Blogs Api Router s",
+                "operationId": "BlogsGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Blog"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Item PUT Api Router",
+                "operationId": "BlogsPutController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Blog id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Add Item",
+                        "name": "blog",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.BlogCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Blog"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Blogs Api Router s",
+                "operationId": "BlogsDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Blog"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/blogs/{id}/file/": {
+            "post": {
+                "description": "Description of the api",
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "BlogsUploadFileController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/Blog"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories-extends/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Extend"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CategoriesExtendController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.CategoryExtend"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories-extends/group": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Extend"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CategoriesExtendController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.CategoryExtendGroup"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories-extends/slug/{slug}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Extend"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CategoriesExtendSlugController",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Category id",
+                        "name": "slug",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.CategoryExtend"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories-subcategories/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Subcategories"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CategoriesAndSubcategoriesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.CategorySubcategory"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Categories Subcategories"
+                ],
+                "summary": "Category Create Api Router",
+                "operationId": "CategoriesCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Category",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.CategorySubcategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.CategorySubcategory"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories-subcategories/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Subcategories"
+                ],
+                "summary": "Get Subcategories from the one category",
+                "operationId": "CategoryGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.CategorySubcategory"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Subcategories"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "CategoryDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.CategorySubcategory"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories-subcategories/{id}/subcategories/{subcategory}": {
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Subcategories"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "CategoriesAndSubcategoriesDeleteSubcategoryController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.CategorySubcategory"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories-subcategories/{id}/subcategories/{subcategory}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories Subcategories"
+                ],
+                "summary": "Get Subcategory",
+                "operationId": "CategoryGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Subcategory id",
+                        "name": "subcategory",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.CategorySubcategory"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CategoriesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Category"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Category Create Api Router",
+                "operationId": "CategoriesCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Category",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.CategoryCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/categories/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "CategoryGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "CategoryDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Category id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/cities/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Cities"
+                ],
+                "summary": "Cities Api Router",
+                "operationId": "CitiesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Cities",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.City"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/contacts/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "ContactsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Contact"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Category Create Api Router",
+                "operationId": "ContactsCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Category",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ContactCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/contacts/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "ContactsGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Contact id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "ContactsDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Contact id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Contact",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Contact"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/countries/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CountriesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Countries",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Country"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/countries/{code}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CountriesGetController",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Code id",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Countries",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Country"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/countries/{code}/regions/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CountriesRegionsController",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Code id",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Countries",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Region"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/countries/{code}/regions/{region}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CountriesRegionController",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Country code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Region Code",
+                        "name": "region",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Countries",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Region"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/countries/{code}/regions/{region}/cities/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CountriesRegionCitiesController",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Country Code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Region Code",
+                        "name": "region",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Countries",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.City"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/events-group/group/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "EventsGetGroupController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.EventsList"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/events-group/group/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "EventsGetGroupIdController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.EventsList"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/events/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "EventsGetController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.EventsList"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "EventsPostController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "auth",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AclPackageActivate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/EventsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/events/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "EventsGetEventController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.EventsList"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "EventsDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Add Role",
+                        "name": "auth",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.AclPackageActivate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/EventsResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/item-contacts/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Item Contacts"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "ItemsContactsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.ItemContact"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Item Contacts"
+                ],
+                "summary": "Category Create Api Router",
+                "operationId": "ItemsContactsCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Category",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemContactCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemContact"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/item-contacts/{idItem}/row/{idRow}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Item Contacts"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "ItemsContactsGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "idItem",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Row id",
+                        "name": "idRow",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Category",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemContact"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Item Contacts"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "ContactsDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "idItem",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "row id",
+                        "name": "idRow",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Contact",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemContact"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items-extends-category/{slug}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items Extend"
+                ],
+                "summary": "Items Api Router",
+                "operationId": "ItemsExtendsSlugController",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "category-subcategory-slug id",
+                        "name": "slug",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemExtendArray"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items-extends/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items Extend"
+                ],
+                "summary": "Items Api Router",
+                "operationId": "ItemsExtendsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Items",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemExtendArray"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create one item and one user and assigned to item",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Items Extend"
+                ],
+                "summary": "Item Create Api Router",
+                "operationId": "ItemsExtendsCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Item",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemExtendCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemExtend"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items-extends/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items Extend"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "ItemsExtendsGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemExtend"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items-extends/{id}/action/click": {
+            "post": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items Extend"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "ItemsExtendsActionClickController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/nil"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items-extends/{id}/action/views": {
+            "post": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items Extend"
+                ],
+                "summary": "Categories Api Router s",
+                "operationId": "ItemsExtendsActionViewsController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/nil"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items-extends/{id}/file/": {
+            "post": {
+                "description": "Description of the api",
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "ItemsExtendsFileController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ACLResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Items Api Router",
+                "operationId": "ItemsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Items",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Item"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Item Create Api Router",
+                "operationId": "ItemsCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Item",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Item"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/items/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Items Api Router s",
+                "operationId": "ItemsGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Item"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Item PUT Api Router",
+                "operationId": "ItemsPutController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Add Item",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Item"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Items Api Router s",
+                "operationId": "ItemsDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Item id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Item",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Item"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/regions/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Regions Api Router",
+                "operationId": "RegionsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Regions",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Region"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/roles/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "RolesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Role"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Role Create Api Router",
+                "operationId": "RolesCreateController",
+                "parameters": [
+                    {
+                        "description": "Add Role",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.RoleCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/roles/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Roles Api Router s",
+                "operationId": "RolesGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Role id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Role",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Roles"
+                ],
+                "summary": "Roles Api Router s",
+                "operationId": "RolesDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Role id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Role",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Role"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/scraping/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Scraping"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "ScrapingController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ACLResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/search/images/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "SearchImagesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Web",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.SearchWeb"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/search/web/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "SearchWebController",
+                "responses": {
+                    "200": {
+                        "description": "Show Web",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.SearchWeb"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/search/web/limit/{offset}/{limit}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Search"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "SearchWebLimitController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Web",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.InitSearchWeb"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/subcategories/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "SubCategories Api Router",
+                "operationId": "SubCategoriesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Subcategories",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Subcategory"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "Subcategory Create Api Router",
+                "operationId": "SubCategoriesCreateController",
+                "parameters": [
+                    {
+                        "description": "Add SubCategory",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.SubCategoryCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show SubCategory",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Subcategory"
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Error",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/subcategories/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "Subcategories Api Router s",
+                "operationId": "SubCategoryGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Subcategory id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Subcategory",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Subcategory"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Subcategories"
+                ],
+                "summary": "Subcategories Api Router s",
+                "operationId": "SubCategoryDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "SubCategory id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show SubCategory",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.Subcategory"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/upload/avatar": {
+            "post": {
+                "description": "Description of the api",
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "UploadController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ACLResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/upload/banner": {
+            "post": {
+                "description": "Description of the api",
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "UploadBannerController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ACLResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/upload/gallery": {
+            "post": {
+                "description": "Description of the api",
+                "tags": [
+                    "Upload"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "UploadGalleryController",
+                "responses": {
+                    "200": {
+                        "description": "Show Roles",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/libs.ACLResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user-extends/blogs/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "User Extends"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "UserExtendsBlogsController",
+                "responses": {
+                    "200": {
+                        "description": "Show Blogs",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.BlogExtend"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user-extends/confirmation/email/token/{token}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "User Extends"
+                ],
+                "summary": "Blogs Api Router",
+                "operationId": "UserExtendsConfirmationTokenController",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Token",
+                        "name": "token",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Blogs",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserConfirmEmailToken"
+                        }
+                    },
+                    "404": {
+                        "description": "Show Blogs",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserConfirmEmailToken"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user-extends/items/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "User Extends"
+                ],
+                "summary": "Categories Api Router",
+                "operationId": "CategoriesController",
+                "responses": {
+                    "200": {
+                        "description": "Show Categories",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.ItemExtendArray"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users Api Router",
+                "operationId": "UsersController",
+                "responses": {
+                    "200": {
+                        "description": "Show Users",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.User"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users Create Api Router",
+                "operationId": "UsersCreateController",
+                "parameters": [
+                    {
+                        "description": "Add User account",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserCreated"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Users",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{id}/": {
+            "get": {
+                "description": "Description of the api",
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users Api Router s",
+                "operationId": "UsersGetController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Users",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Description of the api",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users Update Api Router",
+                "operationId": "UsersUpdateController",
+                "parameters": [
+                    {
+                        "description": "Add User account",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.UserCreated"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "User id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show Users",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    },
+                    "400": {
+                        "description": "error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Description of the api",
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Users Api Router s",
+                "operationId": "UsersDeleteController",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Show User",
+                        "schema": {
+                            "type": "object",
+                            "$ref": "#/definitions/models.User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "libs.ACLResponse": {
+            "type": "object",
+            "properties": {
+                "package": {
+                    "type": "object",
+                    "$ref": "#/definitions/libs.UserPackage"
+                },
+                "package_permission": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/libs.PackagePermission"
+                    }
+                }
+            }
+        },
+        "libs.ErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "object"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "libs.HelloWorldResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "libs.PackagePermission": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "fk_id_package": {
+                    "type": "integer"
+                },
+                "fk_id_permission": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "libs.UserPackage": {
+            "type": "object",
+            "properties": {
+                "discount": {
+                    "type": "number"
+                },
+                "fk_amount_type": {
+                    "type": "integer"
+                },
+                "fk_id_package": {
+                    "type": "integer"
+                },
+                "fk_id_package_offer": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "package_price": {
+                    "type": "number"
+                },
+                "price_total": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.AclPackageActivate": {
+            "type": "object",
+            "properties": {
+                "custom": {
+                    "type": "string"
+                },
+                "invoice": {
+                    "type": "string"
+                },
+                "ipn_track_id": {
+                    "type": "string"
+                },
+                "item_name": {
+                    "type": "string"
+                },
+                "mc_amount_1": {
+                    "type": "string"
+                },
+                "mc_amount_3": {
+                    "type": "string"
+                },
+                "payer_email": {
+                    "type": "string"
+                },
+                "payer_status": {
+                    "type": "string"
+                },
+                "period_1": {
+                    "type": "string"
+                },
+                "period_3": {
+                    "type": "string"
+                },
+                "recur_times": {
+                    "type": "string"
+                },
+                "recurring": {
+                    "type": "string"
+                },
+                "subscr_date": {
+                    "type": "string"
+                },
+                "subscr_id": {
+                    "type": "string"
+                },
+                "txn_type": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.AclPackageInvoice": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.AclPackageInvoiceSuccess": {
+            "type": "object",
+            "properties": {
+                "invoice": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.AutCredentials": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.AuthUser": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                },
+                "user": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.User"
+                }
+            }
+        },
+        "models.Blog": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "fk_id_category": {
+                    "type": "integer"
+                },
+                "fk_user_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BlogCategory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BlogCategoryCreated": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BlogComment": {
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "fk_id_blog": {
+                    "type": "integer"
+                },
+                "fk_user_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_email": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BlogCommentCreated": {
+            "type": "object",
+            "properties": {
+                "comment": {
+                    "type": "string"
+                },
+                "fk_id_blog": {
+                    "type": "integer"
+                },
+                "fk_user_id": {
+                    "type": "integer"
+                },
+                "user_email": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BlogCreated": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "fk_id_category": {
+                    "type": "integer"
+                },
+                "fk_user_id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.BlogExtend": {
+            "type": "object",
+            "properties": {
+                "blog": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Blog"
+                },
+                "category": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.BlogCategory"
+                },
+                "comments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.BlogComment"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.BlogTag"
+                    }
+                },
+                "user": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.UserDetail"
+                }
+            }
+        },
+        "models.BlogTag": {
+            "type": "object",
+            "properties": {
+                "fk_id_blog": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Category": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CategoryCreated": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CategoryExtend": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "id_category": {
+                    "type": "integer"
+                },
+                "id_subcategory": {
+                    "type": "integer"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "subcategory": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CategoryExtendCount": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CategoryExtendGroup": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.CategoryExtend"
+                    }
+                },
+                "category": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.CategoryExtendCount"
+                }
+            }
+        },
+        "models.CategorySubcategory": {
+            "type": "object",
+            "properties": {
+                "fk_id_category": {
+                    "type": "integer"
+                },
+                "fk_id_subcategory": {
+                    "type": "integer"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.City": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "latitude": {
+                    "type": "string"
+                },
+                "longitude": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Contact": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ContactCreated": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "subject": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Country": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "string"
+                },
+                "longitude": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Events": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "event_end": {
+                    "type": "string"
+                },
+                "event_start": {
+                    "type": "string"
+                },
+                "fk_id_city": {
+                    "type": "integer"
+                },
+                "fk_id_user": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "is_public": {
+                    "type": "boolean"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.EventsList": {
+            "type": "object",
+            "properties": {
+                "events": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Events"
+                },
+                "location": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.EventsLocation"
+                }
+            }
+        },
+        "models.EventsLocation": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.InitSearchWeb": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.SearchWeb"
+                    }
+                }
+            }
+        },
+        "models.Item": {
+            "type": "object",
+            "properties": {
+                "contact_name": {
+                    "type": "string"
+                },
+                "contact_phone": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "fk_city": {
+                    "type": "integer"
+                },
+                "fk_id_category": {
+                    "type": "integer"
+                },
+                "fk_id_subcategory": {
+                    "type": "integer"
+                },
+                "fk_user_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ItemContact": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "fk_id_item": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "user_email": {
+                    "type": "string"
+                },
+                "user_message": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "user_phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ItemContactCreated": {
+            "type": "object",
+            "properties": {
+                "fk_id_item": {
+                    "type": "integer"
+                },
+                "user_email": {
+                    "type": "string"
+                },
+                "user_message": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "user_phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ItemCreated": {
+            "type": "object",
+            "properties": {
+                "contact_name": {
+                    "type": "string"
+                },
+                "contact_phone": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "fk_city": {
+                    "type": "integer"
+                },
+                "fk_id_category": {
+                    "type": "integer"
+                },
+                "fk_id_subcategory": {
+                    "type": "integer"
+                },
+                "fk_user_id": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ItemDetail": {
+            "type": "object",
+            "properties": {
+                "city_name": {
+                    "type": "string"
+                },
+                "contact_name": {
+                    "type": "string"
+                },
+                "contact_phone": {
+                    "type": "string"
+                },
+                "country_name": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "item_city": {
+                    "type": "string"
+                },
+                "item_country": {
+                    "type": "string"
+                },
+                "item_region": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "region_name": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ItemExtend": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.CategoryExtend"
+                },
+                "item": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.ItemDetail"
+                },
+                "user": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.UserDetail"
+                }
+            }
+        },
+        "models.ItemExtendArray": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.ItemExtend"
+                    }
+                }
+            }
+        },
+        "models.ItemExtendCreated": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.ItemCreated"
+                },
+                "user": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.UserCreated"
+                }
+            }
+        },
+        "models.Package": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "package_amount": {
+                    "type": "integer"
+                },
+                "package_discount": {
+                    "type": "number"
+                },
+                "package_price": {
+                    "type": "number"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.PackageGroup": {
+            "type": "object",
+            "properties": {
+                "package": {
+                    "type": "object",
+                    "$ref": "#/definitions/models.Package"
+                },
+                "package_permission": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.PackagePermissions"
+                    }
+                }
+            }
+        },
+        "models.PackagePermissions": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "fk_id_package": {
+                    "type": "integer"
+                },
+                "fk_id_permission": {
+                    "type": "integer"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.Region": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "latitude": {
+                    "type": "string"
+                },
+                "longitude": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Role": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.RoleCreated": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "parent_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.SearchWeb": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "primary": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SubCategoryCreated": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Subcategory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.User": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "age": {
+                    "type": "string",
+                    "example": "2006-01-02T00:00:00Z"
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "fk_role_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UserConfirmEmailToken": {
+            "type": "object",
+            "properties": {
+                "err": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UserCreated": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "age": {
+                    "type": "string",
+                    "example": "2006-01-02T00:00:00Z"
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "fk_role_id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UserDetail": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "age": {
+                    "type": "string",
+                    "example": "2006-01-02T00:00:00Z"
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "fk_role_id": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "slug": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UserRecovery": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UserRecoveryEmail": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
